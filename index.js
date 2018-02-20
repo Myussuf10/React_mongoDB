@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect(keys.mongooseURI);
+mongoose.connect(keys.mongoURI);
 
 require("./routes/authRoutes")(app);
 
