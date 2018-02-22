@@ -17,7 +17,7 @@ renderContent(){
 		
 		default:
 
-		return (<li><a>Logout</a></li>);
+		return (<li><a href="/api/logout">Logout</a></li>);
 
 	}
 }

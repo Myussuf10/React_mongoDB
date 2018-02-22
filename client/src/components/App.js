@@ -11,7 +11,7 @@ import Header from './Header';
 
 
 const Landing = () => <div>Landing!!</div>;
-const Dashboard = () => <div>Dashboard !!!!</div>;
+const Dashboard = () => <h1>Dashboard !!!!</h1>;
 const SurveyNew = () => <div>SurveyNew !!!</div>;
 
 class App extends Component {
