@@ -9,15 +9,15 @@ renderContent(){
 	switch(this.props.auth){
 		case null: 
 		
-		return ("Loading ...!!!")
+		return ;
 
 		case false:
 		
-		return ("Logged Out")
+		return (<li><a href="/auth/google">Login with Google</a></li>);
 		
 		default:
 
-		return ("logged In")
+		return (<li><a>Logout</a></li>);
 
 	}
 }
@@ -28,7 +28,7 @@ renderContent(){
 			  <nav>
     <div className = "nav-wrapper">
       <a href="#" className="brand-logo">FullStackReactJs</a>
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul className="right">
  		{this.renderContent()}
       </ul>
     </div>
