@@ -5,12 +5,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import 'materialize-css/dist/css/materialize.min.css'
+
 import * as actions from '../actions';
 
 import Header from './Header';
 
+import Landing from './Landing';
 
-const Landing = () => <div>Landing!!</div>;
 const Dashboard = () => <h1>Dashboard !!!!</h1>;
 const SurveyNew = () => <div>SurveyNew !!!</div>;
 
