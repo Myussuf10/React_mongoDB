@@ -24,7 +24,19 @@ renderContent(){
 
 	render() {
 		console.log(this.props.auth);
-		return (<div>{this.renderContent()} </div>);
+		return (
+			  <nav>
+    <div className = "nav-wrapper">
+      <a href="#" className="brand-logo">FullStackReactJs</a>
+      <ul id="nav-mobile" className="right hide-on-med-and-down">
+ 		{this.renderContent()}
+      </ul>
+    </div>
+  </nav>
+
+
+
+			);
 	}
 }
 

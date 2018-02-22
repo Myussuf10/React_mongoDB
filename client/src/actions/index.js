@@ -7,6 +7,6 @@ export const fetchUser = () => async dispatch => {
 
 	const res = await axios.get('/api/user')
 
-	await dispatch({type : FETCH_USER , payload : res});
+	await dispatch({type : FETCH_USER , payload : res.data});
 	
 	}
