@@ -33,6 +33,7 @@ app.use(passport.session());
 mongoose.connect(keys.mongoURI);
 
 require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
 
 
 // For Deploymnet listen to enviorment variable PORT
