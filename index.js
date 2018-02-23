@@ -40,7 +40,7 @@ require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 
 
-if (process.env.NODE_ENV=production) {
+if (process.env.NODE_ENV === 'production') {
 
 // Express will serve the production assets like main.js and .css build by reactjs
 
