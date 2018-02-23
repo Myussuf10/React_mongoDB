@@ -1,5 +1,7 @@
 const express = require("express");
 
+const bodyParser = require("body-parser");
+
 const cookieSession = require("cookie-session");
 
 const passport = require("passport");
@@ -15,6 +17,7 @@ require("./services/passport");
 
 const app = express();
 
+app.use(bodyParser.json());
 // making use of cookie-session
 
 app.use(
