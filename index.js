@@ -1,12 +1,12 @@
 const express = require("express");
 
-const bodyParser = require("body-parser");
-
 const cookieSession = require("cookie-session");
 
 const passport = require("passport");
 
 const mongoose = require("mongoose");
+
+const bodyParser = require("body-parser");
 
 const keys = require("./config/keys");
 
@@ -36,6 +36,7 @@ app.use(passport.session());
 mongoose.connect(keys.mongoURI);
 
 require("./routes/authRoutes")(app);
+
 require("./routes/billingRoutes")(app);
 
 
