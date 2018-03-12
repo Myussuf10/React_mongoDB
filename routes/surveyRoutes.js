@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
+const Mailer  = require("../services/Mailer");
 
+const surveyTemplate = require("../services/emailTemplates/surveyTemplates");
 
 const Survey = mongoose.model("surveys");
 
@@ -21,6 +23,8 @@ app.post('/api/surveys' , requireLogin , requireCredits , (req , res ) => {
 		_user : req.user.id,
 		dateSent: Date.now()
 	});
+
+	const mailer = new Mailer(survey , surveyTemplate);
 
 });
 
