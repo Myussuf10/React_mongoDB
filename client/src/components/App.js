@@ -12,7 +12,8 @@ import Header from './Header';
 
 import Landing from './Landing';
 
-const Dashboard = () => <h1>Dashboard !!!!</h1>;
+import Dashboard from './Dashboard'
+
 const SurveyNew = () => <div>SurveyNew !!!</div>;
 
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
 		<Header /> 
 		<Route exact path="/" component={Landing}/>
 		<Route exact path="/surveys" component={Dashboard}/>
-		<Route path="/surveys/new" component={SurveyNew}/>
+		<Route exact path="/surveys/new" component={SurveyNew}/>
 		</div>
 		</BrowserRouter>
 		</div>
