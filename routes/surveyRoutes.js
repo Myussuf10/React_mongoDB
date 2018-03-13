@@ -25,6 +25,7 @@ app.post('/api/surveys' , requireLogin , requireCredits , (req , res ) => {
 	});
 
 	const mailer = new Mailer(survey , surveyTemplate(survey));
+	mailer.send();
 
 });
 
