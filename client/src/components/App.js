@@ -12,9 +12,9 @@ import Header from './Header';
 
 import Landing from './Landing';
 
-import Dashboard from './Dashboard'
+import Dashboard from './Dashboard';
 
-const SurveyNew = () => <div>SurveyNew !!!</div>;
+import SurveyNew from './surveys/SurveyNew'; 
 
 class App extends Component {
 
