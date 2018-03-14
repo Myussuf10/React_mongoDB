@@ -1,16 +1,12 @@
 // SurveyField renders single input
 
-import React , { Component } from 'react';
+import React from 'react';
 
-
-class SurveyField extends Component {
-
-	render(){
-		return (<div>
-			<input />
+export default ({input , label}) => {
+	return (
+		<div>
+			<label>{label}</label>
+			<input {...input}/>
 			</div>);
-	}
-}
 
-
-export default SurveyField;
+};
