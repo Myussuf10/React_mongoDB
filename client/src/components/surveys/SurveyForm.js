@@ -10,20 +10,13 @@ import SurveyField from './SurveyField';
 
 import validateEmails from '../../utils/validateEmails'
 
-
-const FIELDS = [
-				{label: 'Survey Title' , name:'title'},
-				{label: 'Subject' , name:'subject'},
-				{label: 'Email Body' , name:'body'},
-				{label: 'Recpients List' , name:'emails'}
-				];
-
+import formFields from './formField';
 
 class SurveyForm extends Component {
 
 	renderFields(){
 
-		return FIELDS.map(field => {
+		return formFields.map(field => {
 			return <Field key={field.name} label= {field.label} type="text" name={field.name} component={SurveyField}/>
 			});
 	}
@@ -49,7 +42,7 @@ const errors = {};
 
 errors.emails = validateEmails(values.emails || '');
 
-	FIELDS.forEach(({name}) => {
+	formFields.forEach(({name}) => {
 		if (!values[name]) {
 			errors[name] = `You must Provide value for ${name}`
 		}

@@ -4,10 +4,22 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-const SurveyFormReview = ({onCancel}) => {
+import formField from './formField'
 
+const SurveyFormReview = ({onCancel , formValues }) => {
+
+const reviewFields = formField.map(({name , label}) => {
+
+	return (<div key={name}>
+			<label>{label}</label>
+			<div>
+			{formValues[name]}
+			</div>
+		</div>);
+});
 return (<div>
 	<h3>Please Review your survey </h3>
+	{reviewFields}
 
 	<button className="yellow darken-3 btn-flat white-text" onClick={onCancel}>
 	Back 
