@@ -28,7 +28,10 @@ app.post('/api/surveys/webhooks' , (req , res ) => {
 		return {email : event.email , surveyId: match.surveyId ,  choice: match.choice}
 	}
 	});
-	console.log(events);
+
+	const compactEvents = _.compact(events);
+	const uniqueEvents = _.uniqBy(compactEvents , 'email', 'surveyId');
+	console.log(uniqueEvents);
 });
 
 app.post('/api/surveys' , requireLogin , requireCredits , async (req , res ) => {
