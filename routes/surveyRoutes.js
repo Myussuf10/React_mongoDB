@@ -1,3 +1,7 @@
+const _ = require('lodash');
+const PATH = require('path-parser');
+const { URL } = require('url');
+
 const mongoose = require("mongoose");
 
 const requireLogin = require('../middlewares/requireLogin');
@@ -16,8 +20,15 @@ app.get('/api/surveys/feedback', (req , res) => {
 
 app.post('/api/surveys/webhooks' , (req , res ) => {
 
-	console.log(req.body);
-	res.send({});
+	const events = _.map(req.body , ( event ) => {
+	const pathname = new URL(event.url).pathname;
+	const p = new PATH('/api/surveys/:surveyId/:choice');
+	const match = p.test(pathname);
+	if (match) {
+		return {email : event.email , surveyId: match.surveyId ,  choice: match.choice}
+	}
+	});
+	console.log(events);
 });
 
 app.post('/api/surveys' , requireLogin , requireCredits , async (req , res ) => {
