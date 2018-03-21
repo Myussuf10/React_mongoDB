@@ -14,14 +14,14 @@ const Survey = mongoose.model("surveys");
 
 module.exports = app => {
 
-app.get('/api/surveys/feedback', (req , res) => {
+app.get('/api/surveys/:surveyId/:choice', (req , res) => {
 	res.send('Thanks for the feedback');
 });
 
 app.post('/api/surveys/webhooks' , (req , res ) => {
 	const p = new PATH('/api/surveys/:surveyId/:choice');
 
-	const events = _.chain(req.body)
+	_.chain(req.body)
 		.map(( {email , url }) => {
 			const match = p.test(new URL(url).pathname);
 			if (match) {
@@ -30,24 +30,22 @@ app.post('/api/surveys/webhooks' , (req , res ) => {
 		})
 		.compact()
 		.uniqBy('email', 'surveyId')
-		.each( event => {
+		.each( ({ surveyId , email , choice }) => {
 			Survey.updateOne({
-				id: surveyId,
+				_id: surveyId,
 				recipients: {
 				$elemMatch : {email : email , responded: false}
 				}
 			}, {
 
 			$inc: { [choice] : 1},
-			$set: { 'recipients.$.responded' : true}
+			$set: { 'recipients.$.responded' : true},
+			lastResponded: new Date()
 
-		})
+		}).exec()
 		})
 		.value();
-	
-	console.log(events);
 
-	res.send({});
 });
 
 app.post('/api/surveys' , requireLogin , requireCredits , async (req , res ) => {
