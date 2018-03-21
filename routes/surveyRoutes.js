@@ -19,19 +19,22 @@ app.get('/api/surveys/feedback', (req , res) => {
 });
 
 app.post('/api/surveys/webhooks' , (req , res ) => {
-
-	const events = _.map(req.body , ( event ) => {
-	const pathname = new URL(event.url).pathname;
 	const p = new PATH('/api/surveys/:surveyId/:choice');
-	const match = p.test(pathname);
-	if (match) {
-		return {email : event.email , surveyId: match.surveyId ,  choice: match.choice}
-	}
-	});
 
-	const compactEvents = _.compact(events);
-	const uniqueEvents = _.uniqBy(compactEvents , 'email', 'surveyId');
-	console.log(uniqueEvents);
+	const events = _.chain(req.body)
+		.map(( {email , url }) => {
+			const match = p.test(new URL(url).pathname);
+			if (match) {
+				return {email : email , surveyId: match.surveyId ,  choice: match.choice}
+			}
+		})
+		.compact()
+		.uniqBy('email', 'surveyId')
+		.value();
+	
+	console.log(events);
+
+	res.send({});
 });
 
 app.post('/api/surveys' , requireLogin , requireCredits , async (req , res ) => {
